@@ -1,6 +1,14 @@
 <template>
-    <div class="flex w-[400px] h-screen items-center justify-center text-center" id="app">
-      <div class="p-12 bg-gray-100 border border-gray-300" 
+<div class="pl-3">
+  <a-button type="primary" @click="handleButtonClick" ghost>
+      Ortga
+    </a-button>
+
+</div>
+
+    <div>
+    <div class="w-full flex  items-center justify-center text-center" id="app">
+      <div class="p-12 bg-gray-100 border border-gray-300  hover:bg-slate-400 hover:text-white" 
         @dragover="dragover" 
         @dragleave="dragleave" 
         @drop="drop">
@@ -12,11 +20,11 @@
           @change="onChange" 
           ref="file" 
           accept=".pdf,.jpg,.jpeg,.png" />
-    
+          
         <label for="assetsFieldHandle" class="block cursor-pointer">
           <div>
-            Explain to our users they can drop files in here 
-            or <span class="underline">click here</span> to upload their files
+            file qoying 👉
+            <span class="underline hover:text-red-500">click here</span> 👈 bosing
           </div>
         </label>
         <ul class="mt-4" v-if="filelist.length" v-cloak>
@@ -26,9 +34,12 @@
         </ul>
       </div>
     </div>
+    </div>
   </template>
   
   <script>
+import { Button } from 'ant-design-vue';
+
   export default {
     data() {
       return {
@@ -36,6 +47,11 @@
       };
     },
     methods: {
+    handleButtonClick() {
+      this.$router.go(-1);
+      console.log('Button clicked!');
+
+    },
       onChange() {
         this.filelist = [...this.$refs.file.files];
         console.log("push",this.filelist);
