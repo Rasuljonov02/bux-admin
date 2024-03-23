@@ -4,6 +4,7 @@ import Faxrimiz from '../views/Faxrimiz/Faxrimiz.vue'
 import Ittifoq from '../views/Ittifoq/Ittifoq.vue'
 import Tuzilma from '../views/Tuzilma/Tuzilma.vue'
 import Yangilik from '../views/Yangilik/Yangilik.vue'
+import Qosh from '../views/Bosh/qosh.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,11 +29,17 @@ const router = createRouter({
       name: 'tuzilma',
       component: Tuzilma
     },
+     {
+      path: '/qosh',
+      name: 'qosh',
+      component: Qosh
+    },
     {
       path: '/yangilik',
       name: 'yangilik',
       component: Yangilik
-    }
+    },
+   
   ]
 });
 

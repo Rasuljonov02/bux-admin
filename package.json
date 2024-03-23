@@ -17,9 +17,11 @@
     "ant-design-vue": "4.x",
     "aos": "^2.3.4",
     "axios": "^1.6.7",
+    "primevue": "^3.50.0",
     "rm": ".",
     "typed.js": "^2.1.0",
     "vue": "^3.4.15",
+    "vue-media-upload": "^2.2.4",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.35",
     "tailwindcss": "latest",
+    "unplugin-vue-components": "^0.26.0",
     "vite": "^5.0.11",
     "vite-plugin-vue-devtools": "^7.0.18"
   }
