@@ -2,10 +2,10 @@
   <div>
     <Hedr />
   </div>
-  <div class="w-full bg-slate-100 pt-[60px]">
+  <div class=" pt-[60px] p-[30px]">
     <RouterView />
   </div>
- 
+
 </template>
 
 <script>
@@ -15,7 +15,7 @@ import { RouterView } from 'vue-router'
 export default {
   components: {
     Hedr,
-   
+
     RouterView
   }
 }

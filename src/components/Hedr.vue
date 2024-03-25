@@ -112,7 +112,7 @@ export default {
 								Tuzilma
 							</RouterLink>
 						</li>
-						
+
 						<li>
 							<RouterLink
 							@click.native="scrollToTop"	to="/Faxrimiz"
