@@ -4,9 +4,9 @@
 
 </div>
   <div class="pl-3">
-    <a-button class="mt-[80px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" @click="handleButtonClick" ghost>
+    <button  class="mt-[80px] text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" @click="handleButtonClick" ghost>
       Ortga
-    </a-button>
+    </button>
 
   </div>
 
@@ -48,7 +48,8 @@
 
 
     <form class="max-w-md mx-auto" @submit.prevent="submitForm">
-      <div class="relative z-0 w-full mb-5 group">
+      <div>
+        <div class="relative z-0 w-full mb-5 group">
         <input type="text" name="sarlavha" id="sarlavha" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
         <label for="sarlavha" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sarlavha</label>
       </div>
@@ -68,8 +69,15 @@
 <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
 </div>
 </div>
+      </div>
 
-<button @click="onChange" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+<div class="flex items-center gap-2">
+  <button @click="onChange" id="save" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+<div class="flex" v-if="btn">
+
+<button  @click="api" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Jonatish</button>
+</div>
+</div>
 </form>
 </div>
 </template>
@@ -77,8 +85,9 @@
 <script>
 export default {
   data() {
-    return {
+    return {btn:false,
       filelist: [
+
         {
           file: [],
           title: "",
@@ -109,10 +118,21 @@ export default {
         ism: floatingFirstName,
         family: floatingLastName
       };
+if (this.filelist.title === "") {
+this.btn=false;
+  return
+} else if (this.filelist.paragrif === "") {
+this.btn=false;
+  return
+}
+this.btn=true;
+
 
       console.log("push", this.filelist);
     },
-
+api(){
+console.log("api");
+},
     remove(index) {
       this.filelist.file.splice(index, 1);
       console.log("remov",this.filelist);
