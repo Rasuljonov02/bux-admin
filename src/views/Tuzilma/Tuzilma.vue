@@ -1,11 +1,39 @@
 <template>
-  
+  <div>
+    <div class="w-full grid place-items-center">
+  <p class="font-bold font-Arial text-[25px] ">Tuzilmaqosh </p>
 
-  <h1>salom itifoq</h1>
+</div>
+    <a-button type="primary" class="ml-[30px]]" @click="handleButtonClick" ghost>
+      <router-link
+        to="tuzilmaqosh"
+      >
+        Qosh
+      </router-link>
+    </a-button>
+  </div>
 </template>
 
 <script>
-export default {}
+import { Button } from 'ant-design-vue';
+
+export default {
+  data() {
+    return {
+      title: 'bosh menu'
+    };
+  },
+  methods: {
+    handleButtonClick() {
+      console.log('Button clicked!');
+    }
+  },
+  components: {
+    'a-button': Button
+  }
+};
 </script>
 
-<style></style>
+<style>
+/* Add your custom styles here */
+</style>
