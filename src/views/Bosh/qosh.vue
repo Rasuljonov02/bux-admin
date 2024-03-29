@@ -64,10 +64,7 @@
           <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
           <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
         </div>
-        <div class="relative z-0 w-full mb-5 group">
-          <input type="text" name="floating_last_name" id="floating_last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-<label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
-</div>
+
 </div>
       </div>
 
@@ -110,7 +107,6 @@ export default {
       const sarlavha = document.getElementById('sarlavha').value;
       const text = document.getElementById('text').value;
       const floatingFirstName = document.getElementById('floating_first_name').value;
-      const floatingLastName = document.getElementById('floating_last_name').value;
 
       // Push data to filelist
       this.filelist = {
@@ -118,7 +114,7 @@ export default {
         title: sarlavha,
         paragrif: text,
         ism: floatingFirstName,
-        family: floatingLastName
+
       };
 if (this.filelist.title === "") {
 this.btn=false;
@@ -136,31 +132,32 @@ this.btn=true;
 async api(){
   console.log("api");
 
-
   const formData = new FormData();
+  // this.filelist.file.forEach((file, index) => {
+  //       formData.append(`images[${index}]`, file);
+  //   });
 
-// this.filelist.file.forEach((file, index) => {
-  //         formData.append(`images[${index}]`, file);
-//     });
-
-
-
-  formData.append('images', this.filelist.file);
+  formData.append('images', this.filelist.file[0]);
   formData.append('author', this.filelist.ism);
   formData.append('title', this.filelist.title);
   formData.append('subtitle', this.filelist.paragrif);
   formData.append('readtime', "1 munut");
 
-  const config = { header: { 'Content-Type': 'multipart/form-data' } };
 
   try {
-    const response = await axios.post("http://185.196.213.14:4041/api/v1/create-news", formData, config);
-    console.log(response.data); // Assuming response.data contains the response body
+    const response = await axios.post('http://185.196.213.14:4041/api/v1/create-news', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+       this.$router.go(-1);
+    console.log('Response:', response.data);
+
   } catch (error) {
-    console.error("Error occurred:", error);
-    // Handle error here, e.g., show error message to the user
+    console.error('Error:', error);
   }
 }
+
 ,
    remove(index) {
       this.filelist.file.splice(index, 1);
