@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {btn:false,
@@ -130,10 +132,37 @@ this.btn=true;
 
       console.log("push", this.filelist);
     },
-api(){
-console.log("api");
-},
-    remove(index) {
+
+async api(){
+  console.log("api");
+
+
+  const formData = new FormData();
+
+// this.filelist.file.forEach((file, index) => {
+  //         formData.append(`images[${index}]`, file);
+//     });
+
+
+
+  formData.append('images', this.filelist.file);
+  formData.append('author', this.filelist.ism);
+  formData.append('title', this.filelist.title);
+  formData.append('subtitle', this.filelist.paragrif);
+  formData.append('readtime', "1 munut");
+
+  const config = { header: { 'Content-Type': 'multipart/form-data' } };
+
+  try {
+    const response = await axios.post("http://185.196.213.14:4041/api/v1/create-news", formData, config);
+    console.log(response.data); // Assuming response.data contains the response body
+  } catch (error) {
+    console.error("Error occurred:", error);
+    // Handle error here, e.g., show error message to the user
+  }
+}
+,
+   remove(index) {
       this.filelist.file.splice(index, 1);
       console.log("remov",this.filelist);
     },

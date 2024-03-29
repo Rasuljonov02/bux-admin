@@ -15,7 +15,7 @@
     "@splidejs/vue-splide": "^0.6.12",
     "ant-design-vue": "4.x",
     "aos": "^2.3.4",
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "primevue": "^3.50.0",
     "rm": ".",
     "typed.js": "^2.1.0",
